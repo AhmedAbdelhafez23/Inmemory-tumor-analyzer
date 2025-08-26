@@ -1,6 +1,20 @@
 # Inmemory-tumor-analyzer
 Effizientes In-Memory-Tumorerkennung auf Basis spektraler Wellenlängendaten. Die Analyse erfolgt mit Python und optimierten SQL-Abfragen zur Klassifikation biologischer Gewebeproben.
 
+ Inmemory-tumor-analyzer/
+├── imdb1.py # Python-Skript für die Datenverarbeitung
+├── imdb2.py # SQL-basierte Version mit SQLite
+├── data/
+│ ├── LaserBase.csv # Referenzdaten
+│ ├── LaserBaseTest1.csv
+│ ├── LaserBaseTest2.csv
+│ ├── LaserBaseTest3.csv
+├── results/
+│ ├── Test1_results.csv
+│ └── Test2_results.csv
+│ └── Test3_results.csv
+├── screenshots/ # Für Dokumentation (z. B. Jupyter-Ausgabe)
+
 # 🎯 LaserBase: Tumordetektion mit In-Memory-Datenverarbeitung
 
 Dieses Projekt wurde im Rahmen der Belegarbeit „In-Memory-Datenbanken“ im Wintersemester 2024/25 entwickelt. Ziel ist die Klassifizierung von spektroskopischen Messdaten zur Unterscheidung zwischen tumorfreiem und tumorbefallenem Gewebe auf Basis effizienter In-Memory-Datenverarbeitung.
@@ -60,18 +74,6 @@ Diese Implementierung basiert auf der Belegarbeit [In-Memory-Datenbanken WS24/25
 ---
 
 
- Inmemory-tumor-analyzer/
-├── imdb1.py # Python-Skript für die Datenverarbeitung
-├── imdb2.py # SQL-basierte Version mit SQLite
-├── data/
-│ ├── LaserBase.csv # Referenzdaten
-│ ├── LaserBaseTest1.csv
-│ ├── LaserBaseTest2.csv
-│ ├── LaserBaseTest3.csv
-├── results/
-│ ├── Test1_results.csv
-│ └── Test2_results.csv
-│ └── Test3_results.csv
-├── screenshots/ # Für Dokumentation (z. B. Jupyter-Ausgabe)
+
 
 © 2025 Ahmed Abdelhafez
