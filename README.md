@@ -43,7 +43,7 @@ Inmemory-tumor-analyzer/
 ├── 📂 src/                     # Eigenentwickelte Quellcodes zur Datenverarbeitung
 │   ├── daten_verarbeitung.py
 │   ├── sql_verarbeitung.py
-│   └── utils.py (optional für Hilfsfunktionen)
+│  
 │
 ├── 📂 results/                 # Ergebnisse der Verarbeitung (generierte CSVs)
 │   ├── Test1.csv_results.csv
