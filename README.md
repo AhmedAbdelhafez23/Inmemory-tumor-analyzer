@@ -2,8 +2,8 @@
 Effizientes In-Memory-Tumorerkennung auf Basis spektraler Wellenlängendaten. Die Analyse erfolgt mit Python und optimierten SQL-Abfragen zur Klassifikation biologischer Gewebeproben.
 
  Inmemory-tumor-analyzer/
-├── imdb1.py # Python-Skript für die Datenverarbeitung
-├── imdb2.py # SQL-basierte Version mit SQLite
+├── Datenverarbeitung.ipynb # Python-Skript für die Datenverarbeitung
+├── SQL_Abfragen.ipynb # SQL-basierte Version mit SQLite
 ├── data/
 │ ├── LaserBase.csv # Referenzdaten
 │ ├── LaserBaseTest1.csv
