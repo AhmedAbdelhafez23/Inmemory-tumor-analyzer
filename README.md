@@ -1,79 +1,64 @@
-# Inmemory-tumor-analyzer
-Effizientes In-Memory-Tumorerkennung auf Basis spektraler Wellenlängendaten. Die Analyse erfolgt mit Python und optimierten SQL-Abfragen zur Klassifikation biologischer Gewebeproben.
+In-Memory-Datenverarbeitung zur Tumorerkennung mit LaserBase-Daten
 
- Inmemory-tumor-analyzer/
-├── Datenverarbeitung.ipynb # Python-Skript für die Datenverarbeitung
-├── SQL_Abfragen.ipynb # SQL-basierte Version mit SQLite
-├── data/
-│ ├── LaserBase.csv # Referenzdaten
-│ ├── LaserBaseTest1.csv
-│ ├── LaserBaseTest2.csv
-│ ├── LaserBaseTest3.csv
-├── results/
-│ ├── Test1_results.csv
-│ └── Test2_results.csv
-│ └── Test3_results.csv
-├── screenshots/ # Für Dokumentation (z. B. Jupyter-Ausgabe)
+Dieses Projekt entstand im Rahmen einer Belegarbeit im Fach In-Memory-Datenbanken im Wintersemester 2024/2025. Ziel war es, medizinische Messdaten – sogenannte Spektraldaten – effizient zu verarbeiten und auszuwerten, um den Tumorstatus von Proben zu bestimmen.
 
-# 🎯 LaserBase: Tumordetektion mit In-Memory-Datenverarbeitung
+Ziel des Projekts
 
-Dieses Projekt wurde im Rahmen der Belegarbeit „In-Memory-Datenbanken“ im Wintersemester 2024/25 entwickelt. Ziel ist die Klassifizierung von spektroskopischen Messdaten zur Unterscheidung zwischen tumorfreiem und tumorbefallenem Gewebe auf Basis effizienter In-Memory-Datenverarbeitung.
+Im Mittelpunkt steht die Analyse von Messwerten, die mithilfe eines Laser-basierten Messverfahrens gewonnen wurden. Jede Probe enthält Werte für verschiedene Wellenlängen, die in einer CSV-Datei gespeichert sind. Die Aufgabe bestand darin, herauszufinden, ob eine Probe als "Tumorfrei" (N) oder "Tumorbefallen" (T) gilt.
 
-## 🔬 Motivation
+Vorgehensweise
 
-In der medizinischen Forschung, insbesondere der Onkologie, ist eine schnelle und präzise Analyse großer Datenmengen entscheidend. Diese Anwendung zeigt, wie moderne In-Memory-Techniken wie Pandas, kombiniert mit SQL-Optimierungen, dazu beitragen können, Tumorerkennung effizient durchzuführen.
+Zur Lösung der Aufgabe wurden zwei verschiedene Ansätze verfolgt:
 
-## ⚙️ Projektstruktur
+Python-basierte Datenverarbeitung
+Mithilfe von Pandas und NumPy wurden die Referenzdaten aus einer Datei eingelesen, bereinigt und gruppiert. Für jede Gruppe wurde ein Durchschnittswert berechnet, wobei die sogenannte Leave-One-Out-Methode zur Anwendung kam. Die eigentlichen Testdaten wurden dann mit diesen Referenzwerten verglichen.
 
-### `3.1 Datenaufbereitung`
-- Bereinigen der Referenzdaten (z. B. Konvertierung von Dezimalzeichen, Entfernen von Ausreißern)
-- Berechnung der Durchschnittswerte pro Wellenlänge mit der **Leave-One-Out (LOO)** Methode
-- Parallelisierte Verarbeitung zur Erhöhung der Performance
+SQL-basierte Verarbeitung
+Zusätzlich wurde eine alternative Umsetzung entwickelt, bei der die gesamte Analyse direkt in einer SQL-Datenbank (SQLite) durchgeführt wurde. Dabei kamen verschachtelte Abfragen, statistische Kennzahlen wie Varianz und Standardabweichung sowie Filter zur Erkennung und Entfernung von Ausreißern zum Einsatz.
 
-### `3.2 Tumortests`
-- Vergleich von Testdaten mit Referenzdaten
-- Klassifikation jedes Wertes als „N“ (tumorfrei) oder „T“ (tumorbefallen)
-- Gesamtauswertung einer Testprobe basierend auf dem Anteil der „N“-Klassifikationen
+Beide Methoden liefern am Ende eine Klassifikation jeder Messreihe und bewerten, ob die Wellenlängenergebnisse im erwarteten Bereich liegen.
 
-### `3.3 Relationale Datenbankabfragen`
-- Transformation der Logik in SQL zur Analyse großer Testdatenmengen
-- Ausreißereliminierung durch Standardabweichung
-- Schwellenwertbasierte Aggregation (z. B. 70 %-Regel)
-- Index-Erstellung zur Optimierung der Abfragen
+Testdaten und Ergebnisermittlung
 
-## 💾 Technologie-Stack
+Drei Testdateien mit realen Messwerten wurden analysiert. Für jede Datei wurde entschieden, ob die Probe tumorfrei oder tumorverdächtig ist. Als Entscheidungskriterium galt: Wenn mindestens 70 % der gemessenen Werte in den Toleranzbereich passen, gilt die Probe als tumorfrei.
 
-- **Python (Pandas, NumPy, concurrent.futures)**
-- **SQLite / MS Access (relationale Abfragen)**
-- **CSV-Datenimport**
-- **Jupyter / IDLE / PyCharm** (für Entwicklung und Test)
+Die Ergebnisse wurden in neuen CSV-Dateien gespeichert, die für jede Testdatei sowohl die Bewertung einzelner Wellenlängen als auch die Gesamtauswertung enthalten.
 
-## 🗃️ Dateien (Beispiel)
+Warum dieses Projekt?
 
-- `LaserBase.csv` – Referenzmessdaten (Gewebeproben)
-- `LaserBaseTest1.csv`, `Test2.csv`, `Test3.csv` – neue Messproben
-- `IMDB1.py`, `IMDB2.py` – Python-Skripte zur Analyse
-- `IMDB.accdb` – relationale SQL-Abfragen in MS Access
+Die Analyse medizinischer Daten erfordert oft hohe Genauigkeit und schnelle Verarbeitung großer Datenmengen. Durch den Einsatz von In-Memory-Techniken, paralleler Verarbeitung und strukturierter Datenmodellierung zeigt dieses Projekt, wie man diese Anforderungen mit modernen Technologien umsetzen kann.
 
-## 📈 Ergebnisse
+Fazit
 
-- Laufzeit je Test < 1 Sekunde
-- Zuverlässige Identifikation aller Proben als tumorbefallen (T)
-- Kombinierter Einsatz von In-Memory-Analyse und relationaler Aggregation ermöglicht Skalierung für große Datenmengen
+Das Projekt demonstriert, wie In-Memory-Verarbeitung und SQL miteinander kombiniert werden können, um medizinische Diagnosedaten effizient zu analysieren. Die entwickelte Lösung ist erweiterbar und bietet eine solide Grundlage für die zukünftige Verarbeitung von tausenden Proben im Rahmen klinischer Anwendungen.
 
-## 🧪 Ausführung
+Inmemory-tumor-analyzer/
+├── 📂 data_original/           # Ursprüngliche bereitgestellte CSV-Dateien
+│   ├── LaserBase.csv
+│   ├── LaserBaseTest1.csv
+│   ├── LaserBaseTest2.csv
+│   ├── LaserBaseTest3.csv
+│   └── Klassifikation_Ergebnisse.csv
+│
+├── 📂 src/                     # Eigenentwickelte Quellcodes zur Datenverarbeitung
+│   ├── daten_verarbeitung.py
+│   ├── sql_verarbeitung.py
+│   └── utils.py (optional für Hilfsfunktionen)
+│
+├── 📂 results/                 # Ergebnisse der Verarbeitung (generierte CSVs)
+│   ├── Test1.csv_results.csv
+│   ├── Test2.csv_results.csv
+│   ├── Test3.csv_results.csv
+│   ├── Test1.csv_analyse.csv
+│   ├── Test2.csv_analyse.csv
+│   ├── Test3.csv_analyse.csv
+│   ├── LaserBaseTest1.csv_vergleich.csv
+│   ├── LaserBaseTest2.csv_vergleich.csv
+│    ├── LaserBaseTest2.csv_vergleich.csv │   
+│
+├── 📂 docs/                    #Screenshots oder Abbildungen
+│   └── Belegarbeit.pdf            # 🧾 Ausformulierte Belegarbeit (Endversion)
+│    └──Screenshots
+│
+├── README.md                  # 🔹 Projektbeschreibung
 
-1. Referenzdaten & Testdaten ins Projektverzeichnis legen
-2. `IMDB1.py` ausführen: In-Memory-Testanalyse
-3. `IMDB2.py` oder `.accdb` öffnen: SQL-basierte Analyse
-
-## 📚 Quelle
-
-Diese Implementierung basiert auf der Belegarbeit [In-Memory-Datenbanken WS24/25] und orientiert sich an der Fallstudie LaserBase (Kapitel 3).
-
----
-
-
-
-
-© 2025 Ahmed Abdelhafez
