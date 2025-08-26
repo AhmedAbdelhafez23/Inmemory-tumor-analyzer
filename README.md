@@ -54,7 +54,7 @@ Inmemory-tumor-analyzer/
 │   ├── Test3.csv_analyse.csv
 │   ├── LaserBaseTest1.csv_vergleich.csv
 │   ├── LaserBaseTest2.csv_vergleich.csv
-│    ├── LaserBaseTest2.csv_vergleich.csv │   
+│    ├── LaserBaseTest2.csv_vergleich.csv   
 │
 ├── 📂 docs/                    #Screenshots oder Abbildungen
 │   └── Belegarbeit.pdf            # 🧾 Ausformulierte Belegarbeit (Endversion)
